@@ -24,10 +24,18 @@ export async function* findTranscriptFiles(dir) {
   }
 }
 
-export async function readRecords(file, lineFilter) {
+const RECORD_TIMESTAMP = /"timestamp":"([^"]+)"/;
+
+export function isSubagentTranscript(file) {
+  return file.split(/[\\/]+/).includes('subagents');
+}
+
+export async function readTranscript(file, lineFilter) {
   const records = [];
+  let startedAt = null;
   const lines = createInterface({ input: createReadStream(file, 'utf8'), crlfDelay: Infinity });
   for await (const line of lines) {
+    startedAt ??= Date.parse(line.match(RECORD_TIMESTAMP)?.[1]) || null;
     if (!lineFilter.test(line)) continue;
     try {
       records.push(JSON.parse(line));
@@ -35,5 +43,5 @@ export async function readRecords(file, lineFilter) {
       continue;
     }
   }
-  return records;
+  return { records, startedAt };
 }

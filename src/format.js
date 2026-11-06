@@ -1,3 +1,13 @@
+const DAY = 24 * 60 * 60 * 1000;
+
+export function describeCoverage({ sessions, oldest, now = Date.now() }) {
+  const sessionCount = `${sessions} ${sessions === 1 ? 'session' : 'sessions'}`;
+  if (oldest == null) return sessionCount;
+
+  const days = Math.max(1, Math.ceil((now - oldest) / DAY));
+  return `${sessionCount} from the last ${days === 1 ? 'day' : `${days} days`}`;
+}
+
 export function renderTable(rows, columns) {
   const widths = columns.map(({ header, value }) =>
     Math.max(header.length, ...rows.map((row) => String(value(row)).length)));

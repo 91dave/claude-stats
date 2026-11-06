@@ -19,8 +19,19 @@ function run(args, env = {}) {
   return { code: result.status, stdout: result.stdout, stderr: result.stderr };
 }
 
+const DAY = 24 * 60 * 60 * 1000;
+
 function tableRows(stdout) {
-  return stdout.trim().split(/\r?\n/).slice(2).map((line) => line.trim().split(/\s+/));
+  const [table] = stdout.trim().split(/\r?\n\r?\n/);
+  return table.split(/\r?\n/).slice(2).map((line) => line.trim().split(/\s+/));
+}
+
+function lastLine(stdout) {
+  return stdout.trim().split(/\r?\n/).pop();
+}
+
+function daysSince(timestamp) {
+  return Math.ceil((Date.now() - Date.parse(timestamp)) / DAY);
 }
 
 test('skill-use prints a table of skills with total first, then manual and auto', () => {
@@ -35,6 +46,18 @@ test('skill-use prints a table of skills with total first, then manual and auto'
     ['qtx-logs', '1', '1', '0'],
     ['ship-it', '1', '0', '1'],
   ]);
+});
+
+test('skill-use ends with how many sessions it read and how far back they go, ignoring subagent transcripts', () => {
+  const { stdout } = run(['skill-use'], { CLAUDE_CONFIG_DIR: configA });
+
+  assert.equal(lastLine(stdout), `2 sessions from the last ${daysSince('2026-03-01T09:00:00.000Z')} days`);
+});
+
+test('skill-use counts sessions across every --dir folder', () => {
+  const { stdout } = run(['skill-use', '--dir', join(configA, 'projects'), '--dir', join(configB, 'projects')]);
+
+  assert.equal(lastLine(stdout), `3 sessions from the last ${daysSince('2026-03-01T09:00:00.000Z')} days`);
 });
 
 test('skill-use --json prints the same counts as JSON', () => {
@@ -90,6 +113,7 @@ test('skill-use says so when no skill use is found', (t) => {
 
   assert.equal(code, 0);
   assert.match(stdout, /No skill use found/);
+  assert.equal(lastLine(stdout), '0 sessions');
 });
 
 test('an unknown command fails with usage help', () => {
