@@ -1,0 +1,24 @@
+{
+  "name": "claude-stats",
+  "version": "0.1.0",
+  "description": "Usage statistics from local Claude Code session transcripts",
+  "type": "module",
+  "bin": {
+    "claude-stats": "bin/claude-stats.js"
+  },
+  "files": [
+    "bin",
+    "src"
+  ],
+  "scripts": {
+    "test": "node --test test/*.test.js"
+  },
+  "engines": {
+    "node": ">=18.18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/91dave/claude-stats.git"
+  },
+  "license": "MIT"
+}
