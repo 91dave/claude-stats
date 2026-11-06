@@ -1,0 +1,5 @@
+{"type":"user","uuid":"a-cmd-1","message":{"role":"user","content":"<command-message>qtx-logs</command-message>\n<command-name>/qtx-logs</command-name>"}}
+{"type":"user","isMeta":true,"uuid":"a-load-1","parentUuid":"a-cmd-1","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/qtx-logs\n\n# Logs"}]}}
+{"type":"attachment","uuid":"a-att-1","attachment":{"type":"skill_mention","skillName":"handover"}}
+{"type":"assistant","uuid":"a-asst-3","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_a3","name":"Skill","input":{"skill":"handover"}}]}}
+{"type":"user","isMeta":true,"uuid":"a-load-3","sourceToolUseID":"toolu_a3","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/handover\n\n# Handover"}]}}
