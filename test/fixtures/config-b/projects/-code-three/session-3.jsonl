@@ -1,0 +1,2 @@
+{"type":"user","uuid":"b-cmd-1","message":{"role":"user","content":"<command-message>qtx-logs</command-message>\n<command-name>/qtx-logs</command-name>"}}
+{"type":"user","isMeta":true,"uuid":"b-load-1","parentUuid":"b-cmd-1","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/qtx-logs\n\n# Logs"}]}}

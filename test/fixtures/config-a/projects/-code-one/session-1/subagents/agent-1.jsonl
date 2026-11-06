@@ -1,0 +1,1 @@
+{"type":"assistant","uuid":"a-asst-2","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_a2","name":"Read","input":{"file_path":"/home/me/.claude/skills/handover/SKILL.md"}}]}}

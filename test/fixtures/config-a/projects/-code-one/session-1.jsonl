@@ -1,0 +1,7 @@
+{"type":"user","uuid":"a-cmd-1","message":{"role":"user","content":"<command-message>qtx-logs</command-message>\n<command-name>/qtx-logs</command-name>"}}
+{"type":"user","isMeta":true,"uuid":"a-load-1","parentUuid":"a-cmd-1","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/qtx-logs\n\n# Logs"}]}}
+{"type":"user","uuid":"a-cmd-2","message":{"role":"user","content":"<command-name>/clear</command-name>"}}
+{"type":"assistant","uuid":"a-asst-1","message":{"role":"assistant","content":[{"type":"tool_use","id":"toolu_a1","name":"Skill","input":{"skill":"ship-it"}}]}}
+{"type":"user","isMeta":true,"uuid":"a-load-2","sourceToolUseID":"toolu_a1","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/ship-it\n\n# Ship"}]}}
+{"type":"api-request-blob","message":{"role":"user","content":[{"type":"text","text":"Base directory for this skill: /home/me/.claude/skills/noise-skill"}]}}
+{"type":"user","uuid": this line is not valid json, Base directory for this skill
