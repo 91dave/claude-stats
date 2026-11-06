@@ -18,7 +18,11 @@ Skill                Total  Manual  Auto
 qtx-logs                23      18     5
 review-pr-comments      14      14     0
 ship-it                  7       0     7
+
+169 sessions from the last 41 days
 ```
+
+The last line counts the sessions read, not counting subagent transcripts, and how many days ago the oldest of them started. `--json` output leaves it out.
 
 | Option | Effect |
 |---|---|
